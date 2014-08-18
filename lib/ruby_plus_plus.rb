@@ -4,6 +4,9 @@ require_relative 'transformer'
 
 # The public interface of RubyPlusPlus, used to perform Ruby to C++ source
 # code transformation.
+#
+# TODO:
+# - Force all method calls to use brackets!
 class RubyPlusPlus
 
   # Transforms a block of Ruby source code into an equivalent block of C++
@@ -57,6 +60,8 @@ class RubyPlusPlus
     code = TypeInjector.new.transform(code)
 
     code = ForLoopTransformer.new.transform(code)
+
+    code = CurlyBracesInjector.new.transform(code)
 
   end
 
