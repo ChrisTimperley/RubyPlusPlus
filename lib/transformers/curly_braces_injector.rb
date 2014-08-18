@@ -10,4 +10,6 @@ class RubyPlusPlus::CurlyBracesInjector < RubyPlusPlus::Transformer
       statement.strip + " {"
     end
     return code.gsub(/\bend/, "}").gsub(/\belse/, "} else")
+  end
+  
 end
