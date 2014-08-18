@@ -59,8 +59,7 @@ class RubyPlusPlus
 
     # Identify each variable scope.
     # WARNING: Under development!
-    code = TypeInjector.new.transform(code)
-
+    #code = TypeInjector.new.transform(code)
     code = ForLoopTransformer.new.transform(code)
 
     code = CurlyBracesInjector.new.transform(code)
