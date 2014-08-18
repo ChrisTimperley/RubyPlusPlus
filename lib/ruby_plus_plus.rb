@@ -47,6 +47,11 @@ class RubyPlusPlus
     # Ensure that all control flow conditions are enclosed within brackets.
     code = ConditionTransformer.new.transform(code)
 
+    # Transform Ruby keywords to C++ keywords.
+    keyword_transformer = KeywordTransformer.new
+    code = keyword_transformer.transform_elsif(code)
+    code = keyword_transformer.transform_until_and_unless(code)
+
   end
 
 end
