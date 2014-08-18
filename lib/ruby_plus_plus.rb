@@ -1,7 +1,5 @@
 # encoding: utf-8
-require_relative 'refinements/string'
-require_relative 'core/transformer'
-require_relative 'core/context'
+require 'singleton'
 
 # The public interface of RubyPlusPlus, used to perform Ruby to C++ source
 # code transformation.
@@ -10,6 +8,10 @@ require_relative 'core/context'
 # - Force all method calls to use brackets!
 class RubyPlusPlus
   include Singleton
+
+  require_relative 'refinements/string'
+  require_relative 'core/transformer'
+  require_relative 'core/context'
 
   # Transforms a block of Ruby source code into an equivalent block of C++
   # source code.
