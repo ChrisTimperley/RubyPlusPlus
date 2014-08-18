@@ -2,7 +2,7 @@
 #
 # The base class used by all source code transformers. Contains a number of
 # convenience functions used for simple source code inspection and manipulation.
-class Transformer
+class RubyPlusPlus::Transformer
 
   # Determines whether some region within a string is enclosed within brackets.
   #
@@ -21,7 +21,7 @@ class Transformer
     open_brackets != 0
   end
 
-  # Finds the location of the closing bracket for some bracket at a given
+  # Finds the location of the closing bracket for an opening at a given
   # position along a provided string.
   #
   # ==== Parameters
@@ -36,8 +36,18 @@ class Transformer
   end
   alias_method :find_closing_bracket, :match_open_bracket
 
+  # Finds the location of the closing bracket for a closing at a given
+  # position along a provided string.
+  #
+  # ==== Parameters
+  # [+str+]     The string to search.
+  # [+pos+]     The position of the closing bracket along the string.
+  #
+  # ==== Returns
+  # The index of the opening bracket along the string, or nil if the correct
+  # opening bracket cannot be found.
   def match_closing_bracket(str, pos)
-
+    
   end
   alias_method :find_opening_bracket, :match_closing_bracket
 

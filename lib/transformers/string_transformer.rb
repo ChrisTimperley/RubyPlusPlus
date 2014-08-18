@@ -4,7 +4,7 @@
 # program, storing them in a buffer, and replacing them with indexed
 # placeholders, before re-inserting the strings back into their correct
 # positions within the program.
-class StringTransformer < Transformer
+class RubyPlusPlus::StringTransformer < RubyPlusPlus::Transformer
 
   private
 

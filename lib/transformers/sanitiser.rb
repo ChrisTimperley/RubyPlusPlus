@@ -4,7 +4,7 @@
 # stripping out comments, empty lines and excess whitespace, as well as
 # simplifying certain statements. These subtle transformations are designed to
 # make operating on the source code as simple and efficient as possible.
-class Sanitiser < Transformer
+class RubyPlusPlus::Sanitiser < RubyPlusPlus::Transformer
 
   # Removes all comments from a given block of code.
   #
