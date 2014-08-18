@@ -1,6 +1,7 @@
 # encoding: utf-8
 
-require_relative 'transformer'
+require_relative 'core/transformer'
+require_relative 'core/context'
 
 # The public interface of RubyPlusPlus, used to perform Ruby to C++ source
 # code transformation.
