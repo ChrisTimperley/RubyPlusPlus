@@ -62,7 +62,56 @@ class RubyPlusPlus
     code = ForLoopTransformer.new.transform(code)
 
     code = CurlyBracesInjector.new.transform(code)
+    code = SemiColonInjector.new.transform(code)
+
+    # Reinsert the strings.
+    code = string_transformer.restore(code)
+
+    # Use beautifier: AStyle?
+
+    return code
 
   end
 
 end
+
+# Environment.
+# - Variable scoping.
+# - Parameters.
+# - Instance variables.
+# - Class variables.
+
+# for i in 0..5
+# -> for(i = 0; i <= 5; i++)
+#
+# for i in collection
+# -> for(i : collection) # Type checking here?
+#
+# collection.each do |blah|
+#
+# }
+#
+# -> for(blah : collection) {
+#
+# }
+
+# Obstacle Case:
+# if x < 2
+#   y = 0
+# elsif x > 4
+#   y = 1
+# end
+#
+
+# Lists vs. Arrays.
+# - Assume everything is a list?
+# - Apply optimisations afterwards.
+
+# TypeInjector(environment)
+# Type inference.
+# Type coercion.
+
+# Find each variable assignment:
+# POST-SEMI-COLON: /\w+[^!=]=[^!=;]+;/
+# - Do we know the type of this variable already?
+# - Where is this variable used?
