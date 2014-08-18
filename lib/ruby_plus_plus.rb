@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+require_relative 'refinements/string'
 require_relative 'core/transformer'
 require_relative 'core/context'
 
