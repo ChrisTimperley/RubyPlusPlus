@@ -9,6 +9,7 @@ require_relative 'core/context'
 # TODO:
 # - Force all method calls to use brackets!
 class RubyPlusPlus
+  include Singleton
 
   # Transforms a block of Ruby source code into an equivalent block of C++
   # source code.
