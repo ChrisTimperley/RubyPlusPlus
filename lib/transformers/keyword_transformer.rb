@@ -2,7 +2,7 @@
 #
 # The keyword transformer is used to convert Ruby keywords into appropriate
 # C++ equivalents.
-class KeywordTransformer < Transformer
+class RubyPlusPlus::KeywordTransformer < RubyPlusPlus::Transformer
 
   # Converts all "elsif" statements into C++ style "else if".
   def transform_elsif(code)

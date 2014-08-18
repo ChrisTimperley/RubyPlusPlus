@@ -52,6 +52,12 @@ class RubyPlusPlus
     code = keyword_transformer.transform_elsif(code)
     code = keyword_transformer.transform_until_and_unless(code)
 
+    # Identify each variable scope.
+    # WARNING: Under development!
+    code = TypeInjector.new.transform(code)
+
+    code = ForLoopTransformer.new.transform(code)
+
   end
 
 end
