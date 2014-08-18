@@ -15,6 +15,7 @@ class RubyPlusPlus
   # ==== Returns
   # An equivalent C++ program.
   def transform(code)
+
     sanitizer = Sanitizer.new
     code = sanitizer.strip_comments(code)
     code = sanitizer.strip_empty_lines(code)
@@ -24,6 +25,28 @@ class RubyPlusPlus
 
     code = sanitizer.strip_excess_whitespace(code)
     code = sanitizer.collapse_multi_line_statements(code)
+
+    # This will work in simple cases, but not with blocks!
+    #
+    # BREAKING CASE: (Or is this a breaking case?)
+    #
+    # do
+    #   i += 1
+    # end until i == 10
+    #
+    # SOLUTION:
+    # Block transformer!
+    # Need to be careful with semantics here!
+    # <TYPE> <CONDITION> do
+    #
+    # end
+    code = sanitizer.collapse_modifiers(code)
+
+    # ------
+    # BROKEN: According to last update.
+    # Ensure that all control flow conditions are enclosed within brackets.
+    code = ConditionTransformer.new.transform(code)
+
   end
 
 end
