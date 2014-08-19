@@ -21,6 +21,28 @@ class RubyPlusPlus::Transformer
     open_brackets != 0
   end
 
+  # Finds the location of the matching bracket for an opening at a given
+  # position along a provided string.
+  #
+  # ==== Parameters
+  # [+str+]     The string to search.
+  # [+pos+]     The position of the bracket along the string.
+  #
+  # ==== Returns
+  # The index of the matching bracket along the string, or nil if a
+  # matching bracket cannot be found.
+  def match_bracket(str, pos, open)
+    open_brackets = open ? 1 : -1
+    str[pos + 1 .. - 1].each_char do |c|
+      pos += 1
+      open_brackets += 1 if c == '('
+      open_brackets -= 1 if c == ')'
+      return pos if open_brackets == 0
+    end
+    return nil
+  end
+  protected :match_bracket
+
   # Finds the location of the closing bracket for an opening at a given
   # position along a provided string.
   #
@@ -32,7 +54,7 @@ class RubyPlusPlus::Transformer
   # The index of the closing bracket along the string, or nil if the correct
   # closing bracket cannot be found.
   def match_open_bracket(str, pos)
-
+    match_bracket(str, pos, 1)
   end
   alias_method :find_closing_bracket, :match_open_bracket
 
@@ -47,7 +69,7 @@ class RubyPlusPlus::Transformer
   # The index of the opening bracket along the string, or nil if the correct
   # opening bracket cannot be found.
   def match_closing_bracket(str, pos)
-    
+    match_bracket(str, pos, -1)
   end
   alias_method :find_opening_bracket, :match_closing_bracket
 
